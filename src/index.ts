@@ -11,7 +11,6 @@ server.register(cors, {
 });
 server.register(autoload, {
   dir: path.join(__dirname, 'routes'),
-  options: { prefix: 'api' },
 });
 
 server.listen({ port: 8080, host: '0.0.0.0' }, (err, address) => {
