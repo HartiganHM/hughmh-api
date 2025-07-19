@@ -4,9 +4,9 @@
   "main": "index.js",
   "scripts": {
     "prebuild": "rm -rf dist",
-    "prestart": "npm run build",
+    "prestart": "pnpm run build",
     "build": "tsc -p tsconfig.json",
-    "build:prod": "npm install && npm run migrate && npm run build",
+    "build:prod": "pnpm install && pnpm run migrate && pnpm run build",
     "dev": "nodemon",
     "start": "node dist/src/index.js",
     "migrate": "prisma migrate dev",
