@@ -8,21 +8,28 @@ import { defineConfig } from 'eslint/config';
 
 export default defineConfig([
   {
+    ...js.configs.recommended,
+    ...prettier,
     files: ['**/*.{js,mjs,cjs,ts,mts,cts}'],
-    plugins: { js, prettier: prettierPlugin },
-    extends: ['js/recommended', prettier],
-    languageOptions: { globals: globals.browser },
+    plugins: {
+      ...js.configs.recommended.plugins,
+      prettier: prettierPlugin,
+    },
+    languageOptions: {
+      ...js.configs.recommended.languageOptions,
+      globals: globals.browser,
+    },
     rules: {
+      ...js.configs.recommended.rules,
+      ...(prettier.rules ?? {}),
       'prettier/prettier': 'error',
     },
   },
   { ignores: ['dist', 'node_modules'] },
   tseslint.configs.recommended,
   {
+    ...json.configs.recommended,
     files: ['**/*.json'],
-    plugins: { json },
-    language: 'json/json',
-    extends: ['json/recommended'],
   },
   {
     files: ['**/tsconfig.json', '**/*.jsonc'],
