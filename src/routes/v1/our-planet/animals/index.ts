@@ -1,4 +1,4 @@
-import { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
+import { FastifyInstance } from 'fastify';
 import prisma from '../../../../lib/prisma';
 
 export default async function (server: FastifyInstance) {
@@ -32,7 +32,7 @@ export default async function (server: FastifyInstance) {
         },
       },
     },
-    async (request: FastifyRequest, reply: FastifyReply) => {
+    async (request, reply) => {
       const animals = await prisma.animal.findMany();
       reply.send(animals);
     },
