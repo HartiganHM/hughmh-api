@@ -13,7 +13,7 @@ async function main() {
     console.log(`Created continent: ${continent.name}`);
 
     const filteredAnimals = animalsData.filter(
-      (animal) => animal.habitat === continent.name
+      (animal) => animal.habitat === continent.name,
     );
 
     filteredAnimals.forEach(async (animal) => {
