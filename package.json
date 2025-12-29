@@ -7,12 +7,12 @@
     "prestart": "pnpm run build",
     "build": "tsc -p tsconfig.json",
     "build:prod": "pnpm install && pnpm run migrate && pnpm run build",
-    "dev": "NODE_OPTIONS='--no-experimental-warnings' nodemon",
+    "dev": "nodemon",
     "start": "node dist/src/index.js",
     "migrate": "prisma migrate dev",
     "seed": "prisma db seed",
     "lint": "eslint .",
-    "prepare": "NODE_OPTIONS='--no-experimental-warnings' husky install"
+    "prepare": "husky install"
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed/seed.ts"
