@@ -9,6 +9,7 @@
     "build:prod": "pnpm install && pnpm run migrate && pnpm run build",
     "dev": "nodemon",
     "start": "node dist/src/index.js",
+    "generate": "prisma generate",
     "migrate": "prisma migrate dev",
     "seed": "prisma db seed",
     "lint": "eslint .",
