@@ -14,23 +14,26 @@ export default defineConfig([
     plugins: {
       ...js.configs.recommended.plugins,
       prettier: prettierPlugin,
-    },
-    languageOptions: {
-      ...js.configs.recommended.languageOptions,
-      globals: globals.browser,
-    },
+  // JavaScript recommended rules
+  ...js.configs.recommended,
+  // Prettier config to disable conflicting stylistic rules
+  ...prettier,
+  // Project-specific JS/TS overrides
+  {
+    files: ['**/*.{js,mjs,cjs,ts,mts,cts}'],
+    plugins: { js, prettier: prettierPlugin },
+    languageOptions: { globals: globals.browser },
     rules: {
-      ...js.configs.recommended.rules,
-      ...(prettier.rules ?? {}),
       'prettier/prettier': 'error',
     },
   },
+  // Ignore common build artifacts
   { ignores: ['dist', 'node_modules'] },
-  tseslint.configs.recommended,
-  {
-    ...json.configs.recommended,
-    files: ['**/*.json'],
-  },
+  // TypeScript ESLint recommended flat config
+  ...tseslint.configs.recommended,
+  // JSON recommended flat config
+  ...json.configs['flat/recommended'],
+  // Additional JSONC / tsconfig handling
   {
     files: ['**/tsconfig.json', '**/*.jsonc'],
     language: 'json/jsonc',
