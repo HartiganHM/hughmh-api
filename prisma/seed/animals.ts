@@ -1,5 +1,3 @@
-import { Animal } from "@prisma/client";
-
 const animalsData = [
   {
     name: 'Arctic Fox',

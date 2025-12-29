@@ -9,8 +9,11 @@
     "build:prod": "pnpm install && pnpm run migrate && pnpm run build",
     "dev": "nodemon",
     "start": "node dist/src/index.js",
+    "generate": "prisma generate",
     "migrate": "prisma migrate dev",
-    "seed": "prisma db seed"
+    "seed": "prisma db seed",
+    "lint": "eslint .",
+    "prepare": "husky install"
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed/seed.ts"
@@ -22,16 +25,29 @@
   "dependencies": {
     "@fastify/autoload": "^6.1.0",
     "@fastify/cors": "^10.0.2",
+    "@fastify/swagger": "^9.6.1",
+    "@fastify/swagger-ui": "^5.2.3",
     "@prisma/client": "^6.3.0",
     "fastify": "^5.2.1"
   },
   "devDependencies": {
+    "@eslint/js": "^9.39.2",
+    "@eslint/json": "^0.14.0",
     "@types/node": "^22.13.0",
+    "eslint": "^9.39.2",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "globals": "^16.5.0",
+    "husky": "^8.0.0",
+    "jiti": "^2.6.1",
+    "lint-staged": "^16.2.7",
     "nodemon": "^3.1.9",
+    "prettier": "^3.7.4",
     "prisma": "^6.3.0",
     "ts-node": "^10.9.2",
     "tsx": "^4.19.2",
-    "typescript": "^5.7.3"
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.51.0"
   },
   "packageManager": "pnpm@8.15.1+sha512.831cf4c5f8b8374af71521d4d153db49d7086de615c2af7cb5e9d7eb8ba630ddac46fea495d643e552ef2e68a3aa99a3e5e9fbee8696702967504df5c59cb273",
   "engines": {
