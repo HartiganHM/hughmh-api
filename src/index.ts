@@ -36,7 +36,7 @@ server.register(autoload, {
   dir: path.join(__dirname, 'routes'),
 });
 
-// Start the server
+// Start the server. On Vercel the Fastify preset takes over `listen`; locally it binds 8080.
 server.listen(
   { port: 8080, host: '0.0.0.0' },
   (err: Error | null, address: string) => {

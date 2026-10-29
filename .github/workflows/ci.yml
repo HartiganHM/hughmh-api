@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  lint-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # Version comes from package.json#packageManager.
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      # The committed lockfile is v9 while packageManager pins pnpm 8, which cannot
+      # read it, so the install resolves fresh (as Render's build does).
+      - run: pnpm install --no-frozen-lockfile
+      - run: pnpm run lint
+      # Generates the client from the schema only; no database is needed.
+      - run: pnpm run generate
+      - run: pnpm run build
