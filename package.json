@@ -6,14 +6,16 @@
     "prebuild": "rm -rf dist",
     "prestart": "pnpm run build",
     "build": "tsc -p tsconfig.json",
-    "build:prod": "pnpm install && pnpm run migrate && pnpm run build",
+    "build:prod": "pnpm install && pnpm run generate && pnpm run migrate && pnpm run build",
+    "vercel-build": "prisma generate && DATABASE_URL=\"${DIRECT_URL:-$DATABASE_URL}\" prisma migrate deploy",
     "dev": "nodemon",
     "start": "node dist/src/index.js",
     "generate": "prisma generate",
-    "migrate": "prisma migrate dev",
+    "migrate": "prisma migrate deploy",
     "seed": "prisma db seed",
     "lint": "eslint .",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "migrate:dev": "prisma migrate dev"
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed/seed.ts"
